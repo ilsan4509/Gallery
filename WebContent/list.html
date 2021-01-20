@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SunggonKim">
+    <meta name="description" content="프로필사이트">
+    <title>Seong-gon Gallery</title>
+
+    <!--파비콘 아이콘-->
+    <link rel="shortcut icon" href="assets/ico/icon_16.ico">
+    <link rel="apple-touch-icon" sizes="64x64" href="assets/ico/icon_64.ico">
+    <link rel="apple-touch-icon" sizes="96x96" href="assets/ico/icon_96.ico">
+    <link rel="apple-touch-icon" sizes="128x128" href="assets/ico/icon_128.ico">
+    <link  rel="apple-touch-icon" sizes="192x192" href="assets/ico/icon_192.ico">
+
+    <!--스타일 시트-->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        
+        .nav-item:nth-child(4) {
+            background-color: rgb(173, 197, 175);
+        }
+    </style>
+    <!--폰트-->
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <header id="header04">
+        <nav>
+            <ul class="nav-container">
+                <p class="nav-item"><a href="index.html">HOME</a></p>
+                <p class="nav-item"><a href="video.html">VIDEO</a></p>
+                <p class="nav-item"><a href="news.html">NEWS</a></p>
+                <p class="nav-item"><a href="list.html">LIST</a></p>
+                <p class="nav-item"><a href="community.html">COMMUNITY</a></p>
+            </ul>
+        </nav>
+        <div class="title">
+            <p>"Meet art easily"</p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="tit">
+            <h2>Google image search list</h2>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+            <section id="cont_center">
+                <article class="cbox box1">
+                    <h4 class="cbox_tit">키워드:호크니</h4>
+                    <p class="cbox_desc">2020/11/24(화)</p>
+                    <table class="table" id="employee_table">
+                        <tr>
+                            <th>count</th>
+                            <th>title</th>
+                            <th>imgUrl</th>
+                            <!-- <th>linkUrl</th> -->
+                        </tr>
+                    </table>
+                </article>
+                <article class="cbox box2">
+                    <h4 class="cbox_tit">키워드:반 고흐</h4>
+                    <p class="cbox_desc">2020/11/24(화)</p>
+                    <table class="table" id="list_table02">
+                    </table>
+                </article>
+            </section>
+        </div>
+        </section>
+    </main>
+    <a href="#header"><img id="upButton" src="assets/img/top.png" width=50px title="위로가기"></a>
+    <footer id="footer">
+        <p class="footfont">김성곤 | Seong-gon Kim</p>
+        <p class="footfont"><img class="contact-img" src="assets/img/call.png" alt="GTA V">+82-10-4005-4509</p>
+        <p class="footfont"><img class="contact-img" src="assets/img/email.png" alt="GTA V">ilsan4509@naver.com</p>
+    </footer>
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <!--원하는 버젼 사이트로 사용-->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!--https://codejss.tistory.com/30?category=744783-->
+    <script>
+        var table01_keyWord = "호크니";
+        $(document).ready(function () {
+            $.getJSON(table01_keyWord+"_test_crawling_01.json", function (data) {
+                var employee_data = '';
+                $.each(data, function (key, value) {
+                    employee_data += '<tr>';
+                    employee_data += '<td>' + value.count + '</td>';
+                    employee_data += '<td id="title-length">' + value.title + '</td>';
+                    employee_data += '<td>' + '<a href= "'+ value.linkUrl +'"><img class="table-image" src="' + value.imgUrl +  '" ></a>' + '</td>';//이미지 링크
+                    // employee_data += '<td>' + '<a href= "'+ value.linkUrl +'"><img src="'+keyWord+'_' + value.count+  '.jpg" width=100></a>' + '</td>';
+                    // employee_data += '<td>' + value.linkUrl + '</td>';
+                    employee_data += '</tr>';
+                });
+                $('#employee_table').append(employee_data);
+            });
+        });
+    </script>
+    <script>
+        var table02_keyWord = "반 고흐"
+        function opsi(data){
+            var allRows = data.split(/\r?\n|\r/);
+            var table = "";
+            for(var singleRow=0;singleRow<allRows.length;singleRow++){
+                if(singleRow===0){
+                    // table+="<thead>";
+                    table+="<tr>";
+                } else{
+                    table+="<tr>";
+                }
+                var rowCells = allRows[singleRow].replace(/, /gi,'/ ').split(',');
+                // for(var rowSingleCell=0; rowSingleCell<rowCells.length;rowSingleCell++){
+                for(var rowSingleCell=0; rowSingleCell<3;rowSingleCell++){
+                    if(singleRow===0){
+                        table += "<th>";
+                        table += rowCells[rowSingleCell];
+                        table += "</th>";
+                    }else{
+                        table += "<td>";
+                            if(rowSingleCell==2){
+                                table += '<a href= "'+rowCells[3] +'"><img class="table-image" src="' + rowCells[rowSingleCell]+  '" ></a>' //이미지 주소를 이용하기
+                                // table += '<a href= "'+rowCells[3] +'"><img src="'+keyWord+'_' + singleRow+  '.jpg" width=100></a>'//받은 이미지 경로를 이용하기
+                            }else if(rowSingleCell>2){
+
+                            }else{
+                                table += rowCells[rowSingleCell];
+                            }
+                        table += "</td>";
+                    }
+                }
+                table+= "</tr>";
+            }
+            $("#list_table02").append(table);
+        }
+        $.ajax({
+            url: table02_keyWord+"_test_crawling_01.csv",
+            dataType:"text"
+        }).done(opsi);
+    </script>
+</body>
+</html>

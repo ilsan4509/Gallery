@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SunggonKim">
+    <meta name="description" content="프로필사이트">
+    <title>Seoung-gon Gallery</title>
+
+    <!--파비콘 아이콘-->
+    <link rel="shortcut icon" href="assets/ico/icon_16.ico">
+    <link rel="apple-touch-icon" sizes="64x64" href="assets/ico/icon_64.ico">
+    <link rel="apple-touch-icon" sizes="96x96" href="assets/ico/icon_96.ico">
+    <link rel="apple-touch-icon" sizes="128x128" href="assets/ico/icon_128.ico">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/ico/icon_192.ico">
+
+    <!--스타일 시트-->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.css">
+    <link rel="stylesheet" href="assets/css/owl.transitions.css">
+    <style>
+        .nav-item:nth-child(1) {
+            background-color: rgb(173, 197, 175);
+        }
+
+        #owl-demo .item img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #bar {
+            width: 0%;
+            max-width: 100%;
+            height: 4px;
+            background: #7fc242;
+        }
+
+        #progressBar {
+            width: 100%;
+            background: #EDEDED;
+        }
+    </style>
+    <!--폰트-->
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <header id="header01">
+        <nav>
+            <ul class="nav-container">
+                <p class="nav-item"><a href="index.html">HOME</a></p>
+                <p class="nav-item"><a href="video.html">VIDEO</a></p>
+                <p class="nav-item"><a href="news.html">NEWS</a></p>
+                <p class="nav-item"><a href="list.html">LIST</a></p>
+                <p class="nav-item"><a href="community.html">COMMUNITY</a></p>
+            </ul>
+        </nav>
+        <div class="title">
+            <p>"With art for a while"</p>
+        </div>
+    </header>
+        <div class="container">
+            <div class="tit">
+                <h2>About contemporary art</h2>
+            </div>
+        </div>
+    <main>
+        <div class="container">
+            <section id="cont_center">
+                <article class="cbox box1">
+                    <h4 class="cbox_tit">현대미술</h4>
+                    <p class="cbox_desc">현대미술은 보통 1970년대부터, 길게 잡으면 1950년대부터 현재까지의 미술을 일컫는다.</p>
+                    <!--slider-->
+                        <div id="owl-demo" class="owl-carousel owl-theme" >
+                            <div class="item"><img src="assets/img/rew_01.jpg" alt="Jason_Untitled"></div>
+                            <div class="item"><img src="assets/img/rew_02.jpg" alt="The Last of us"></div>
+                            <div class="item"><img src="assets/img/rew_03.jpg" alt="Mirror Edge"></div>
+                        </div>
+                    
+                </article>
+                <article class="cbox box2">
+                    <h4 class="cbox_tit">사실에서 표현(Expression)으로</h4>
+                    <p class="cbox_desc">현대미술 이전의 미술의 간절한 꿈은 눈 앞의 현실을 있는 그대로, 사실적으로 나타내는 것이었던 반면 현대미술에서는 작가의 주관적인 느낌이나 감성을 표현하는 것을 더 중요시한다. 현대미술은 개성을 중시하기 때문에 사실보다는 감성과 느낌을 바탕으로, 때론 과장하여 표현한다.[심은솔 - 관계]</p>
+                    <img src="assets/img/home01.jpg" alt="이미지1">
+                </article>
+                <article class="cbox box3">
+                    <h4 class="cbox_tit">어려운 현대미술</h4>
+                    <p class="cbox_desc">흔히 현대예술의 해체적이고 전복적인, 전위적인 특성 등등으로 설명되는 것입니다. ‘날 이해시킬 수 없고 감동을 줄 수 없으면 예술이라고 볼 수 없어! 예술 감상은 주관적인 거잖아?’라고 심술을 내기 딱 좋은 예. [Marcel Duchamp - Fountain]</p>
+                    <img src="assets/img/home02.jpg" alt="이미지1">
+                </article>
+            </section>
+        </div>
+    </main>
+    <a href="#header"><img id="upButton" src="assets/img/top.png" width=50px title="위로가기"></a>
+
+    <footer id="footer">
+        <p class="footfont">김성곤 | Seong-gon Kim</p>
+        <p class="footfont"><img class="contact-img" src="assets/img/call.png" alt="GTA V">+82-10-4005-4509</p>
+        <p class="footfont"><img class="contact-img" src="assets/img/email.png" alt="GTA V">ilsan4509@naver.com</p>
+    </footer>
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <!--원하는 버젼 사이트로 사용-->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!--https://codejss.tistory.com/30?category=744783-->
+    <script>
+        $(document).ready(function () {
+
+            var time = 7; // time in seconds
+
+            var $progressBar,
+                $bar,
+                $elem,
+                isPause,
+                tick,
+                percentTime;
+
+            //Init the carousel
+            $("#owl-demo").owlCarousel({
+                slideSpeed: 500,
+                paginationSpeed: 500,
+                singleItem: true,
+                afterInit: progressBar,
+                afterMove: moved,
+                startDragging: pauseOnDragging
+            });
+
+            //Init progressBar where elem is $("#owl-demo")
+            function progressBar(elem) {
+                $elem = elem;
+                //build progress bar elements
+                buildProgressBar();
+                //start counting
+                start();
+            }
+
+            //create div#progressBar and div#bar then prepend to $("#owl-demo")
+            function buildProgressBar() {
+                $progressBar = $("<div>", {
+                    id: "progressBar"
+                });
+                $bar = $("<div>", {
+                    id: "bar"
+                });
+                $progressBar.append($bar).prependTo($elem);
+            }
+
+            function start() {
+                //reset timer
+                percentTime = 0;
+                isPause = false;
+                //run interval every 0.01 second
+                tick = setInterval(interval, 10);
+            };
+
+            function interval() {
+                if (isPause === false) {
+                    percentTime += 1 / time;
+                    $bar.css({
+                        width: percentTime + "%"
+                    });
+                    //if percentTime is equal or greater than 100
+                    if (percentTime >= 100) {
+                        //slide to next item 
+                        $elem.trigger('owl.next')
+                    }
+                }
+            }
+
+            //pause while dragging 
+            function pauseOnDragging() {
+                isPause = true;
+            }
+
+            //moved callback
+            function moved() {
+                //clear interval
+                clearTimeout(tick);
+                //start again
+                start();
+            }
+
+            // uncomment this to make pause on mouseover 
+            // $elem.on('mouseover',function(){
+            //   isPause = true;
+            // })
+            // $elem.on('mouseout',function(){
+            //   isPause = false;
+            // })
+
+        });
+    </script>
+</body>
+
+</html>

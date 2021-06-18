@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css" />
+    </scrip>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-responsive">
+            <br />
+            <table class="table table-bordered table-striped" id="employee_table">
+                <tr>
+                    <th>count</th>
+                    <th>title</th>
+                    <th>imgUrl</th>
+                    <!-- <th>linkUrl</th> -->
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    crawling json open
+
+    <script>
+        var keyWord = "스타트업 드라마";
+        $(document).ready(function () {
+            $.getJSON(keyWord+"_test_crawling_01.json", function (data) {
+                var employee_data = '';
+                $.each(data, function (key, value) {
+                    employee_data += '<tr>';
+                    employee_data += '<td>' + value.count + '</td>';
+                    employee_data += '<td>' + value.title + '</td>';
+                    // employee_data += '<td>' + '<img src="' + value.imgUrl +  '" width=100>' + '</td>';//이미지 링크
+                    employee_data += '<td>' + '<a href= "'+ value.linkUrl +'"><img src="'+keyWord+'_' + value.count+  '.jpg" width=100></a>' + '</td>';
+                    // employee_data += '<td>' + value.linkUrl + '</td>';
+                    employee_data += '</tr>';
+                });
+                $('#employee_table').append(employee_data);
+            });
+        });
+    </script>
+</body>
+
+</html>

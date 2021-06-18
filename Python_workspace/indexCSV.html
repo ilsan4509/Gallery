@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: 1px solid #d4d4d4;
+        }
+        tr:nth-child(even){
+            background: #f1f1f1;
+        }
+        th, td{
+            padding: 10px 30px;
+        }
+        th{
+            border-bottom: 1px solid #d4d4d4;
+        }
+    </style>
+</head>
+<body>
+    <script src="jquery.min.js"></script>
+    <script>
+        var keyWord = "스타트업 드라마"
+        function opsi(data){
+            var allRows = data.split(/\r?\n|\r/);
+            var table = "<table>";
+            for(var singleRow=0;singleRow<allRows.length;singleRow++){
+                if(singleRow===0){
+                    table+="<thead>";
+                    table+="<tr>";
+                } else{
+                    table+="<tr>";
+                }
+                var rowCells = allRows[singleRow].replace(/, /gi,'/ ').split(',');
+                // for(var rowSingleCell=0; rowSingleCell<rowCells.length;rowSingleCell++){
+                for(var rowSingleCell=0; rowSingleCell<3;rowSingleCell++){
+                    if(singleRow===0){
+                        table += "<th>";
+                        table += rowCells[rowSingleCell];
+                        table += "</th>";
+                    }else{
+                        table += "<td>";
+                            if(rowSingleCell==2){
+                                table += '<a href= "'+rowCells[3] +'"><img src="' + rowCells[rowSingleCell]+  '" width=100></a>' //이미지 주소를 이용하기
+                                // table += '<a href= "'+rowCells[3] +'"><img src="'+keyWord+'_' + singleRow+  '.jpg" width=100></a>'//받은 이미지 경로를 이용하기
+                            }else if(rowSingleCell>2){
+
+                            }else{
+                                table += rowCells[rowSingleCell];
+                            }
+                        table += "</td>";
+                    }
+                }
+                if(singleRow ===0 ){
+                    table+= "</tr>";
+                    table+="</thead>";
+                    table+="<tbody>";
+
+                }else{
+                    table +="</tr>";
+                }
+            }
+            table += "</tbody>";
+            table += "</table>";
+            $("body").append(table);
+        }
+        $.ajax({
+            url: keyWord+"_test_crawling_01.csv",
+            dataType:"text"
+        }).done(opsi);
+    </script>
+</body>
+</html>
